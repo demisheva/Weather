@@ -84,3 +84,6 @@ input, button{outline:none;}
     border: 1px solid red;
     background: #f57171;
   }
+.hiden{
+    display: none;
+}

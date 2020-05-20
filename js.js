@@ -43,8 +43,6 @@ function choseCity() {
             cityArray.push(element);
         }
     });
-
-
     if (cityArray.length > 1) {
         cityListSelect(cityArray);
     } else if (cityArray.length == 0) {
@@ -58,15 +56,16 @@ function choseCity() {
 
 function cityListSelect(cityArray) {
     let citySelectOption = '';
-
     cityArray.forEach(element => {
         citySelectOption += `<option value= '${element.id}'>${element.name} ${element.state} ${element.country} </option>`
     })
+
     takeDomElement('.find-city-wraper').innerHTML = `<select class="find-city" autofocus><option disabled selected>Chose the city from list</option>${citySelectOption}</select>`;
-    takeDomElement('select').addEventListener("change", function () {
+    takeDomElement('select').onchange = function () {
         cityId = takeDomElement('select').options[this.selectedIndex].value;
-        console.log(cityId)
-    })
+        fechRequest();
+        takeDomElement('.find-city-wraper').innerHTML = `<input type="text" class="find-city" placeholder="Search location ">`
+    }
 }
 
 
