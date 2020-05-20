@@ -34,7 +34,9 @@ input, button{outline:none;}
     text-align: center;
     font-size: 1.5rem;
 }
-
+.find-city-wraper{
+    display: inline;
+}
 .find-city, .find-city-btn{
     padding: 10px;
     line-height: 1.2px;
@@ -46,6 +48,7 @@ input, button{outline:none;}
 .find-city:focus,.find-city:active,.find-city-btn:focus,.find-city-btn:active {
     border: 1px solid #bdbdbd;
     color: #000;
+    background-color: #fff;
 }
 .find-city-btn:focus,.find-city-btn:active,.find-city-btn:hover {
     background-color: #2670af54;
@@ -75,3 +78,9 @@ input, button{outline:none;}
     font-size: 1rem;
     padding: 0.7rem;
 }
+
+  
+  .red{
+    border: 1px solid red;
+    background: #f57171;
+  }
