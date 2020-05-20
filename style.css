@@ -87,3 +87,18 @@ input, button{outline:none;}
 .hiden{
     display: none;
 }
+.visible{
+    display: inline-block;
+}
+.bubble-alert{
+    /* visibility: hidden; */
+    background-color: #ca0000;
+    color: #fff;
+    text-align: center;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 12px;
+}
+.bubble-alert::after{
+content: '';
+}

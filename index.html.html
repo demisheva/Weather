@@ -14,14 +14,19 @@
     <div class="container">
         <h1>The weather forecast</h1>
         <div class="find-city-form">
-            <div class="find-city-wraper"><input type="text" class="find-city" placeholder="Search location"></div>
+            <div class="find-city-wraper">
+                <span class="bubble-alert hiden">Sorry, can`t find such location</span>
+                <input type="text" class="find-city " placeholder="Search location"></div>
+            <select class="find-city select-city hiden" autofocus>
+                <option disabled selected>Chose the city from list</option>
+            </select>
             <button class="find-city-btn">
                 <i class="fas fa-search"></i>
             </button>
         </div>
 
         <div class="town-card">
-            <h2 id="town">Town</h2>
+            <h2 id="town-state-country">Town</h2>
             <div class="block-w33 temperature">
                 <p class="temperature-active" id="temperature-active">25&deg</p>
                 <p>Feels like <span id="temperature-feels">+20&deg</span></p>
