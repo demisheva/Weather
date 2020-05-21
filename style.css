@@ -3,40 +3,61 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 body{
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
     color: #fff;
 }
+
 h1,h2,h3,h4,h5,h6{
-    text-align: center;
     padding: 0.5rem;
     text-transform: uppercase;
 }
+
 h1{
+    text-align: center;
     font-size: 3rem;
-    padding: 2rem;
 }
+
 h2{
     font-size: 2rem;
-    padding: 2rem;
 }
-input, button{outline:none;}
-.main-bg{
-    background: rgb(30,22,50);
-    background: linear-gradient(0deg, rgba(30,22,50,1) 0%, rgba(91,46,61,0.708000700280112) 52%, rgba(116, 110, 141, 0.73) 100%);
-    min-height: 800px;
+
+input, button,select {
+    outline:none;
 }
+
+.hiden{
+    display: none;
+}
+
+.visible{
+    display: inline-block ;
+}
+
 .container{
     width:  100%;
 }
-.find-city-form{
-    text-align: center;
-    font-size: 1.5rem;
+
+.main-bg{
+    background-image: url(/images/day-1674886.png);
 }
+
+.town-card{
+    background-color: #2670af54;
+    width: 80%;
+    margin: 2% auto;
+    border-radius: 5px;
+}
+
 .find-city-wraper{
-    display: inline;
+    text-align: right;
+    font-size: 1.5rem;
+    width: 80%;
+    margin: 2% auto;
 }
+
 .find-city, .find-city-btn{
     padding: 10px;
     line-height: 1.2px;
@@ -44,54 +65,25 @@ input, button{outline:none;}
     border-radius: 5px;
     border: 1px solid #bdbdbd;
 }
+.find-city{
+    width: 50%;
+}
+option {
+font-size: 16px;
+}
 
 .find-city:focus,.find-city:active,.find-city-btn:focus,.find-city-btn:active {
     border: 1px solid #bdbdbd;
     color: #000;
     background-color: #fff;
 }
+
 .find-city-btn:focus,.find-city-btn:active,.find-city-btn:hover {
     background-color: #2670af54;
     color: #fff;
 }
-.town-card{
-    background-color: #2670af54;
-    width: 80%;
-    margin: 2% auto;
-}
-.block-w33{
-    width: 32%;
-    padding: 0.5%;;
-    display: inline-block;
-}
-.temperature{
-    text-align: center;
-}
-.temperature-active{
-    font-size:  5rem;
-    color: yellow;
-}
-.temp-min-max, .weather-params{
-    list-style: none;
-}
-.temp-min-max li, .weather-params li{
-    font-size: 1rem;
-    padding: 0.7rem;
-}
 
-  
-  .red{
-    border: 1px solid red;
-    background: #f57171;
-  }
-.hiden{
-    display: none;
-}
-.visible{
-    display: inline-block;
-}
 .bubble-alert{
-    /* visibility: hidden; */
     background-color: #ca0000;
     color: #fff;
     text-align: center;
@@ -99,6 +91,14 @@ input, button{outline:none;}
     border-radius: 6px;
     font-size: 12px;
 }
+
 .bubble-alert::after{
-content: '';
+    content: '';
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid #ca0000;
+    position: relative;
+    right: -20px;
+    top: 7px;
+    display: inline-block;
 }

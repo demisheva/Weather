@@ -7,16 +7,18 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/17170847fa.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
     <title>The weather forecast</title>
 </head>
 
 <body class="main-bg">
     <div class="container">
         <h1>The weather forecast</h1>
-        <div class="find-city-form">
-            <div class="find-city-wraper">
-                <span class="bubble-alert hiden">Sorry, can`t find such location</span>
-                <input type="text" class="find-city " placeholder="Search location"></div>
+        <h4 id="date">---</h4>
+
+        <div class="find-city-wraper">
+            <span class="bubble-alert hiden">Sorry, can`t find such location</span>
+            <input type="text" class="find-city " placeholder="Search location">
             <select class="find-city select-city hiden" autofocus>
             </select>
             <button class="find-city-btn">
@@ -25,27 +27,46 @@
         </div>
 
         <div class="town-card">
-            <h2 id="town-state-country">Town</h2>
-            <div class="block-w33 temperature">
-                <p class="temperature-active" id="temperature-active">25&deg</p>
-                <p>Feels like <span id="temperature-feels">+20&deg</span></p>
-            </div>
-            <div class="block-w33">
-                <ul class="temp-min-max">
-                    <li>Max <i class="fas fa-temperature-high"></i> <span id="temperature-max">temperature-max</span>
-                    </li>
-                    <li>Min <i class="fas fa-temperature-low"></i> <span id="temperature-min">temperature-min</span>
-                    </li>
-                </ul>
-            </div>
-            <div class="block-w33">
-                <ul class="weather-params">
-                    <li><i class="fas fa-tint"></i> <span id="humidity">humidity</span> % humidity</li>
-                    <li><i class="fas fa-genderless"></i> <span id="pressure">pressure</span> hpa</li>
-                    <li><i class="fas fa-wind"></i> <span id="wind">wind</span> m/s</li>
-                </ul>
-            </div>
+            <h2 id="town-state-country">---</h2>
+
+
+            <p class="temperature-active">
+                <span id="temperature-active">---&deg</span>C
+            </p>
+            <p id="weather-discription">---</p>
+            <p>feels like <span id="temperature-feels">---&deg</span>C</p>
+
+            <ul class="temp-min-max">
+                <li>
+                    <i class="fas fa-temperature-high"></i>
+                    MAX temp
+                    <span id="temperature-max">---&degx</span>C
+                </li>
+                <li>
+                    <i class="fas fa-temperature-low"></i>
+                    Min temp
+                    <span id="temperature-min">---&deg</span>C
+                </li>
+            </ul>
+            <ul class="weather-params">
+                <li>
+                    <i class="fas fa-tint"></i>
+                    HUMIDITY
+                    <span id="humidity">---</span> %
+                </li>
+                <li>
+                    <i class="fas fa-arrow-up"></i>
+                    PRESSURE
+                    <span id="pressure">---</span> hpa
+                </li>
+                <li>
+                    <i class="fas fa-wind"></i>
+                    WIND
+                    <span id="wind">---</span> m/s
+                </li>
+            </ul>
         </div>
+    </div>
     </div>
 
     <script src="js.js"></script>
