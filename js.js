@@ -31,6 +31,7 @@ function fechRequest() {
             document.querySelector('#pressure').textContent = data.main.pressure;
             document.querySelector('#wind').textContent = data.wind.speed;
             document.querySelector('#weather-discription').textContent = data.weather[0].description.toUpperCase();
+            // document.querySelector('#weather-image').src = `https://openweathermap.org/img/wn/${data.weather[0].icon}.png`;
         })
         .catch(function () {
             // catch any errors
