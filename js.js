@@ -1,26 +1,26 @@
 
-// take all list of cities from json
+// take all cities list from json
 let cityList;
 var request = new XMLHttpRequest();
 request.open('GET', 'city.list.json');
 request.responseType = 'json';
 request.send();
-
 request.onload = function () {
     cityList = request.response;
     return cityList
 }
 
+let cityId = 703448;
+
 function takeDomElement(domElement) {
     return document.querySelector(domElement);
 }
 
-let cityId = 703448;
 function fechRequest() {
     fetch(`http://api.openweathermap.org/data/2.5/weather?id=${cityId}&appid=811b26bdde41b08213dc84b03e747002`)
         .then(function (resp) { return resp.json() })
         .then(function (data) {
-            // console.log(data)
+            console.log(data)
             document.querySelector('#town-state-country').textContent = `${data.name} ${data.sys.country}`;
             document.querySelector('#temperature-active').innerHTML = Math.round(data.main.temp - 273) + '&deg;';
             document.querySelector('#temperature-feels').innerHTML = Math.round(data.main.feels_like - 273) + '&deg;';
@@ -35,6 +35,7 @@ function fechRequest() {
             // catch any errors
         });
 }
+
 function choseCity() {
     let city = takeDomElement('.find-city');
     let cityArray = [];
@@ -63,17 +64,14 @@ function cityListSelect(cityArray) {
     })
     takeDomElement('input.find-city').classList.add('hiden')
     takeDomElement('select.select-city').classList.remove('hiden');
-    takeDomElement('select.select-city').innerHTML += `${citySelectOption}`;
+    takeDomElement('select.select-city').innerHTML = `<option disabled selected>Please, select the exact location from the list:</option>${citySelectOption}`;
     takeDomElement('select.select-city').onchange = function () {
         cityId = takeDomElement('select.select-city').options[this.selectedIndex].value;
         fechRequest();
         takeDomElement('select.select-city').classList.add('hiden')
         takeDomElement('input.find-city').classList.remove('hiden')
     }
-    console.log(citySelectOption)
 }
-
-
 
 takeDomElement('.find-city-btn').addEventListener('click', choseCity);
 takeDomElement('.find-city').addEventListener("keypress", event => { if (event.keyCode == 13) { choseCity() } });
