@@ -13,58 +13,71 @@
 
 <body class="main-bg">
     <div class="container">
-        <h1>The weather forecast</h1>
-        <h4 id="date">---</h4>
-
-        <div class="find-city-wraper">
-            <span class="bubble-alert hiden">Sorry, can`t find such location</span>
-            <input type="text" class="find-city " placeholder="Search location">
-            <select class="find-city select-city hiden" autofocus>
-            </select>
-            <button class="find-city-btn">
-                <i class="fas fa-search"></i>
-            </button>
-        </div>
-
+        <header class="header">
+            <h1>The weather forecast</h1>
+            <h4 id="date">---</h4>
+        </header>
         <div class="town-card">
-            <h2 id="town-state-country">---</h2>
 
+            <div class="search-block">
+                <span class="bubble-alert hiden">Sorry, can`t find such location</span>
+                <input type="text" class="find-city " placeholder="Search location">
+                <select class="find-city select-city hiden" autofocus>
+                </select>
+                <button class="find-city-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
 
-            <p class="temperature-active">
-                <span id="temperature-active">---&deg</span>C
-            </p>
-            <p id="weather-discription">---</p>
-            <p>feels like <span id="temperature-feels">---&deg</span>C</p>
+            <div class="weather-image">
+                <i class="fas fa-sun"></i>
+                <p id="weather-discription">---</p>
+            </div>
 
-            <ul class="temp-min-max">
-                <li>
-                    <i class="fas fa-temperature-high"></i>
-                    MAX temp
-                    <span id="temperature-max">---&degx</span>C
-                </li>
-                <li>
-                    <i class="fas fa-temperature-low"></i>
-                    Min temp
-                    <span id="temperature-min">---&deg</span>C
-                </li>
-            </ul>
-            <ul class="weather-params">
-                <li>
-                    <i class="fas fa-tint"></i>
-                    HUMIDITY
-                    <span id="humidity">---</span> %
-                </li>
-                <li>
-                    <i class="fas fa-arrow-up"></i>
-                    PRESSURE
-                    <span id="pressure">---</span> hpa
-                </li>
-                <li>
-                    <i class="fas fa-wind"></i>
-                    WIND
-                    <span id="wind">---</span> m/s
-                </li>
-            </ul>
+            <div class="town-temperature-wrap">
+                <h2 id="town-state-country">---</h2>
+                <p class="temperature-active">
+                    <span id="temperature-active">---&deg</span>C
+                </p>
+            </div>
+
+            <div class="weather-details">
+                <ul class="temp-min-max">
+                    <li>
+                        <i class="fas fa-diagnoses"></i>
+                        FEELS LIKE
+                        <span id="temperature-feels">---&deg</span>C
+                    </li>
+                    <li>
+                        <i class="fas fa-temperature-high"></i>
+                        MAX
+                        <span id="temperature-max">---&degx</span>C
+                    </li>
+                    <li>
+                        <i class="fas fa-temperature-low"></i>
+                        MIN
+                        <span id="temperature-min">---&deg</span>C
+                    </li>
+                </ul>
+                <ul class="weather-params">
+                    <li>
+                        <i class="fas fa-tint"></i>
+                        HUMIDITY
+                        <span id="humidity">---</span> %
+                    </li>
+                    <li>
+                        <i class="fas fa-arrow-up"></i>
+                        PRESSURE
+                        <span id="pressure">---</span> hpa
+                    </li>
+                    <li>
+                        <i class="fas fa-wind"></i>
+                        WIND
+                        <span id="wind">---</span> m/s
+                    </li>
+                </ul>
+            </div>
+            <div class="clear"></div>
         </div>
     </div>
     </div>

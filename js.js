@@ -30,7 +30,7 @@ function fechRequest() {
             document.querySelector('#humidity').textContent = data.main.humidity;
             document.querySelector('#pressure').textContent = data.main.pressure;
             document.querySelector('#wind').textContent = data.wind.speed;
-            document.querySelector('#weather-discription').textContent = data.weather[0].description;
+            document.querySelector('#weather-discription').textContent = data.weather[0].description.toUpperCase();
         })
         .catch(function () {
             // catch any errors
@@ -50,7 +50,7 @@ function choseCity() {
         cityListSelect(cityArray);
     } else if (cityArray.length == 0) {
         takeDomElement('.bubble-alert').classList.remove('hiden');
-        takeDomElement('.find-city').oninput = setTimeout(function () { takeDomElement('.bubble-alert').classList.add('hiden') }, 15000);
+        takeDomElement('.find-city').oninput = setTimeout(function () { takeDomElement('.bubble-alert').classList.add('hiden') }, 5000);
     } else {
         cityId = cityArray[0].id
     }
@@ -81,3 +81,13 @@ document.onload = fechRequest();
 
 let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 takeDomElement('#date').innerHTML = new Date().toLocaleDateString('en-US', options);
+
+// data.weather[0].description
+// <i class="fas fa-cloud-rain"></i>
+// <i class="fas fa-wind"></i>
+// <i class="fas fa-cloud"></i>
+// <i class="fas fa-cloud-sun"></i>
+// <i class="fas fa-cloud-showers-heavy"></i>
+// <i class="fas fa-cloud-rain"></i>
+// <i class="fas fa-sun"></i>
+// <i class="far fa-snowflake"></i>
