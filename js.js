@@ -113,10 +113,11 @@ function changingWeatherImage(data) {
 function changeBackgroungImage(data) {
     let icon = data.weather[0].icon;
     if (icon.search(/n/) != -1) {
-        takeDomElement('.main-bg').style.backgroundImage = 'url(/images/night-1674906.png)';
+        takeDomElement('.main-bg').style.backgroundImage = 'url(/images/night.png)';
     }
     else {
-        takeDomElement('.main-bg').style.backgroundImage = 'url(/images/day-1674886.png)'
+        takeDomElement('.main-bg').style.backgroundImage = 'url(/images/day.png)';
+
     }
 }
 
@@ -125,4 +126,3 @@ takeDomElement('.find-city').addEventListener("keypress", event => { if (event.k
 
 document.onload = fechRequest();
 takeDomElement('#date').innerHTML = new Date().toLocaleDateString('en-US', options);
-

@@ -27,7 +27,6 @@ h2{
 header.header{
     text-align: center;
     margin-top: 80px;
-    
 }
 
 h4{
@@ -53,12 +52,12 @@ input, button,select {
 }
 
 .main-bg{
-    background-image: url(/images/day-1674886.png);
+    background-image: url(/images/night.png);
     background-size: cover;
 }
 
 .town-card{
-    background-color: #2670af54;
+    background-color: #2670afb8;
     width: 80%;
     margin: 5% auto;
     border-radius: 5px;
@@ -155,4 +154,13 @@ text-shadow: #000 2px 2px 3px;
 
 .weather-details ul li{
     line-height: 2rem;
+}
+.mark{
+    text-align: justify;
+    background-color: #2670afb8;
+    width: 80%;
+    margin: 2% auto;
+    border-radius: 5px;
+    padding: 1%;
+    box-shadow: #000 3px 3px 10px;
 }
