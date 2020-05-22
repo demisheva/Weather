@@ -11,6 +11,7 @@ request.onload = function () {
 }
 
 let cityId = 703448;
+let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
 function takeDomElement(domElement) {
     return document.querySelector(domElement);
@@ -85,19 +86,9 @@ function cityListSelect(cityArray) {
     }
 }
 
-takeDomElement('.find-city-btn').addEventListener('click', choseCity);
-takeDomElement('.find-city').addEventListener("keypress", event => { if (event.keyCode == 13) { choseCity() } });
-
-document.onload = fechRequest();
-
-let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-takeDomElement('#date').innerHTML = new Date().toLocaleDateString('en-US', options);
-
 function changingWeatherImage(data) {
-    console.log('yap')
     let id = data.weather[0].id;
-    console.log(id)
-    if (id <= 804 && id > 801) {
+    if (id < 805 && id > 801) {
         takeDomElement('.weather-image').classList.add('fa-cloud');
     } else if (id == 801) {
         takeDomElement('.weather-image').classList.add('fa-cloud-sun');
@@ -118,6 +109,7 @@ function changingWeatherImage(data) {
     }
 
 }
+
 function changeBackgroungImage(data) {
     let icon = data.weather[0].icon;
     if (icon.search(/n/) != -1) {
@@ -127,3 +119,10 @@ function changeBackgroungImage(data) {
         takeDomElement('.main-bg').style.backgroundImage = 'url(/images/day-1674886.png)'
     }
 }
+
+takeDomElement('.find-city-btn').addEventListener('click', choseCity);
+takeDomElement('.find-city').addEventListener("keypress", event => { if (event.keyCode == 13) { choseCity() } });
+
+document.onload = fechRequest();
+takeDomElement('#date').innerHTML = new Date().toLocaleDateString('en-US', options);
+
