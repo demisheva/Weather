@@ -32,10 +32,18 @@ function fechRequest() {
             document.querySelector('#wind').textContent = data.wind.speed;
             document.querySelector('#weather-discription').textContent = data.weather[0].description.toUpperCase();
             // document.querySelector('#weather-image').src = `https://openweathermap.org/img/wn/${data.weather[0].icon}.png`;
+            changingWeatherImage(data);
+            changeBackgroungImage(data);
+
         })
         .catch(function () {
             // catch any errors
+            console.log('error')
+            takeDomElement('.bubble-alert').classList.remove('hiden');
+            takeDomElement('.find-city').oninput = setTimeout(function () { takeDomElement('.bubble-alert').classList.add('hiden') }, 5000);
         });
+
+
 }
 
 function choseCity() {
@@ -55,7 +63,9 @@ function choseCity() {
     } else {
         cityId = cityArray[0].id
     }
+
     fechRequest();
+
     city.value = '';
 };
 
@@ -83,12 +93,37 @@ document.onload = fechRequest();
 let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 takeDomElement('#date').innerHTML = new Date().toLocaleDateString('en-US', options);
 
-// data.weather[0].description
-// <i class="fas fa-cloud-rain"></i>
-// <i class="fas fa-wind"></i>
-// <i class="fas fa-cloud"></i>
-// <i class="fas fa-cloud-sun"></i>
-// <i class="fas fa-cloud-showers-heavy"></i>
-// <i class="fas fa-cloud-rain"></i>
-// <i class="fas fa-sun"></i>
-// <i class="far fa-snowflake"></i>
+function changingWeatherImage(data) {
+    console.log('yap')
+    let id = data.weather[0].id;
+    console.log(id)
+    if (id <= 804 && id > 801) {
+        takeDomElement('.weather-image').classList.add('fa-cloud');
+    } else if (id == 801) {
+        takeDomElement('.weather-image').classList.add('fa-cloud-sun');
+    } else if (id == 800) {
+        takeDomElement('.weather-image').classList.add('fa-sun');
+    } else if (id < 800 && id >= 700) {
+        takeDomElement('.weather-image').classList.add('fa-smog');
+    } else if (id < 700 && id >= 600) {
+        takeDomElement('.weather-image').classList.add('fa-snowflake');
+    } else if (id < 600 && id >= 500) {
+        takeDomElement('.weather-image').classList.add('fa-cloud-sun-rain');
+    } else if (id < 400 && id >= 300) {
+        takeDomElement('.weather-image').classList.add('fa-cloud-rain');
+    } else if (id < 300 && id >= 200) {
+        takeDomElement('.weather-image').classList.add('fa-poo-storm');
+    } else {
+        takeDomElement('.weather-image').classList.add('fa-umbrella');
+    }
+
+}
+function changeBackgroungImage(data) {
+    let icon = data.weather[0].icon;
+    if (icon.search(/n/) != -1) {
+        takeDomElement('.main-bg').style.backgroundImage = 'url(/images/night-1674906.png)';
+    }
+    else {
+        takeDomElement('.main-bg').style.backgroundImage = 'url(/images/day-1674886.png)'
+    }
+}

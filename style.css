@@ -8,6 +8,7 @@ body{
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
     color: #fff;
+    text-shadow: #000 1px 2px 3px;
 }
 
 h1,h2,h3,h4,h5,h6{
@@ -26,7 +27,7 @@ h2{
 header.header{
     text-align: center;
     margin-top: 80px;
-    text-shadow: #000 1px 2px 3px;
+    
 }
 
 h4{
@@ -115,20 +116,23 @@ font-size: 16px;
     top: 7px;
     display: inline-block;
 }
-.weather-image{
+.weather-img-block{
     float: left;
     text-align: center;
     width: 30%;
 }
-.weather-image img{
+.weather-img-block img{
     width: 50%;
 }
-.weather-image .fas{
+.weather-img-block .fas{
     font-size: 8rem;
     padding: 10px;
 }
-.weather-image .fa-sun{
+.weather-img-block .fa-sun{
     color: yellow;
+}
+#town-state-country{
+text-shadow: #000 2px 2px 3px;
 }
 .town-temperature-wrap{
     float: left;
