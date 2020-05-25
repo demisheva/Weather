@@ -1,5 +1,5 @@
 
-// take all cities list from json
+// take all cities list from json !!!working with Server, for example Live Server
 let cityList;
 var request = new XMLHttpRequest();
 request.open('GET', 'city.list.json');
@@ -9,6 +9,7 @@ request.onload = function () {
     cityList = request.response;
     return cityList
 }
+
 
 
 function takeDomElement(domElement) {
@@ -38,8 +39,8 @@ function fechRequest(cityId) {
         .catch(function () {
             // catch any errors
             console.log('error')
-            takeDomElement('.bubble-alert').classList.remove('hiden');
-            takeDomElement('.find-city').oninput = setTimeout(function () { takeDomElement('.bubble-alert').classList.add('hiden') }, 5000);
+            // takeDomElement('.bubble-alert').classList.remove('hiden');
+            // takeDomElement('.find-city').oninput = setTimeout(function () { takeDomElement('.bubble-alert').classList.add('hiden') }, 5000);
         });
 
 
