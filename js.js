@@ -67,7 +67,7 @@ function choseCity() {
 
 
     city.value = '';
-};
+}
 
 function cityListSelect(cityArray) {
     let citySelectOption = '';
@@ -77,18 +77,18 @@ function cityListSelect(cityArray) {
     takeDomElement('input.find-city').classList.add('hiden')
     takeDomElement('.select-city-wraper').classList.remove('hiden');
     takeDomElement('.select-city').innerHTML = `${citySelectOption}`;
-};
+}
 
 function clickedItemInCityList(cityId) {
     fechRequest(cityId);
     takeDomElement('.select-city-wraper').classList.add('hiden')
     takeDomElement('input.find-city').classList.remove('hiden')
-};
+}
 
 function cityNotFound() {
     takeDomElement('.bubble-alert').classList.remove('hiden');
     takeDomElement('.find-city').oninput = setTimeout(function () { takeDomElement('.bubble-alert').classList.add('hiden') }, 5000);
-};
+}
 
 function changingWeatherImage(data) {
     let id = data.weather[0].id;
@@ -113,7 +113,7 @@ function changingWeatherImage(data) {
         takeDomElement('.weather-image').classList.add('fa-umbrella');
     }
 
-};
+}
 
 function changeBackgroungImage(data) {
     let icon = data.weather[0].icon;
@@ -124,7 +124,7 @@ function changeBackgroungImage(data) {
         takeDomElement('.main-bg').style.backgroundImage = 'url(images/day.png)';
 
     }
-};
+}
 
 takeDomElement('.find-city-btn').addEventListener('click', choseCity);
 takeDomElement('.find-city').addEventListener("keypress", event => { if (event.keyCode == 13) { choseCity() } });
