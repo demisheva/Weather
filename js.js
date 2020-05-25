@@ -46,7 +46,7 @@ function fechRequest(cityId) {
 
 }
 
-function choseCity() {
+function chooseCity() {
     let city = takeDomElement('.find-city');
     let cityArray = [];
 
@@ -126,7 +126,7 @@ function changeBackgroungImage(data) {
     }
 }
 
-takeDomElement('.find-city-btn').addEventListener('click', choseCity);
+takeDomElement('.find-city-btn').addEventListener('click', chooseCity);
 takeDomElement('.find-city').addEventListener("keypress", event => { if (event.keyCode == 13) { choseCity() } });
 
 document.onload = fechRequest('703448');
