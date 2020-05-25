@@ -91,6 +91,7 @@ function cityNotFound() {
 
 function changingWeatherImage(data) {
     let id = data.weather[0].id;
+    takeDomElement('.weather-image').setAttribute("class", "weather-image fas")
     if (id < 805 && id > 801) {
         takeDomElement('.weather-image').classList.add('fa-cloud');
     } else if (id == 801) {
@@ -116,10 +117,10 @@ function changingWeatherImage(data) {
 function changeBackgroungImage(data) {
     let icon = data.weather[0].icon;
     if (icon.search(/n/) != -1) {
-        takeDomElement('.main-bg').style.backgroundImage = 'url(/images/night.png)';
+        takeDomElement('.main-bg').style.backgroundImage = 'url(images/night.png)';
     }
     else {
-        takeDomElement('.main-bg').style.backgroundImage = 'url(/images/day.png)';
+        takeDomElement('.main-bg').style.backgroundImage = 'url(images/day.png)';
 
     }
 };

@@ -52,7 +52,7 @@ input, button,select {
 }
 
 .main-bg{
-    background-image: url(/images/night.png);
+    background-color: #1090c0;
     background-size: inherit;
 }
 
@@ -113,7 +113,7 @@ ul.select-city{
 }
 ul.select-city li{
     width: 100%;
-    padding: 0.4rem;
+    padding: 0.4rem 0;
 }
 .select-city li:hover, .select-city li:focus,.select-city li:active{
     background-color: #5090c1;
@@ -149,9 +149,6 @@ ul.select-city li{
     padding: 10px;
 }
 
-.weather-img-block .fa-sun{
-    color: yellow;
-}
 
 #town-state-country{
 text-shadow: #000 2px 2px 3px;
