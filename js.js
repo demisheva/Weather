@@ -130,5 +130,6 @@ takeDomElement('.find-city-btn').addEventListener('click', choseCity);
 takeDomElement('.find-city').addEventListener("keypress", event => { if (event.keyCode == 13) { choseCity() } });
 
 document.onload = fechRequest('703448');
+document.onload = alert('!!!working with Server, for example Live Server')
 let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 takeDomElement('#date').innerHTML = new Date().toLocaleDateString('en-US', options);
