@@ -24,15 +24,20 @@
             <div class="search-block">
                 <span class="bubble-alert hiden">Sorry, can`t find such location</span>
                 <input type="text" class="find-city " placeholder="Search location">
-                <select class="find-city select-city hiden" autofocus>
-                </select>
+                <div class="select-city-wraper hiden">
+                    <p class="disabled">Please, select the exact location:</p>
+                    <ul class="select-city">
+
+                    </ul>
+                </div>
+
                 <button class="find-city-btn">
                     <i class="fas fa-search"></i>
                 </button>
             </div>
-
+            <div class="clear"></div>
             <div class="weather-img-block">
-                <!-- <img id="weather-image" src="https://openweathermap.org/img/wn/02d@2x.png"> -->
+
                 <i class="weather-image fas"></i>
                 <p id="weather-discription">---</p>
             </div>

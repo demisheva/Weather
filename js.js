@@ -10,28 +10,26 @@ request.onload = function () {
     return cityList
 }
 
-let cityId = 703448;
-let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
 function takeDomElement(domElement) {
     return document.querySelector(domElement);
 }
 
-function fechRequest() {
+function fechRequest(cityId) {
     fetch(`http://api.openweathermap.org/data/2.5/weather?id=${cityId}&appid=811b26bdde41b08213dc84b03e747002`)
         .then(function (resp) { return resp.json() })
         .then(function (data) {
             console.log(data)
-            document.querySelector('#town-state-country').textContent = `${data.name} ${data.sys.country}`;
-            document.querySelector('#temperature-active').innerHTML = Math.round(data.main.temp - 273) + '&deg;';
-            document.querySelector('#temperature-feels').innerHTML = Math.round(data.main.feels_like - 273) + '&deg;';
-            document.querySelector('#temperature-max').innerHTML = Math.round(data.main.temp_max - 273) + '&deg;';
-            document.querySelector('#temperature-min').innerHTML = Math.round(data.main.temp_min - 273) + '&deg;';
+            takeDomElement('#town-state-country').textContent = `${data.name} ${data.sys.country}`;
+            takeDomElement('#temperature-active').innerHTML = Math.round(data.main.temp - 273) + '&deg;';
+            takeDomElement('#temperature-feels').innerHTML = Math.round(data.main.feels_like - 273) + '&deg;';
+            takeDomElement('#temperature-max').innerHTML = Math.round(data.main.temp_max - 273) + '&deg;';
+            takeDomElement('#temperature-min').innerHTML = Math.round(data.main.temp_min - 273) + '&deg;';
 
-            document.querySelector('#humidity').textContent = data.main.humidity;
-            document.querySelector('#pressure').textContent = data.main.pressure;
-            document.querySelector('#wind').textContent = data.wind.speed;
-            document.querySelector('#weather-discription').textContent = data.weather[0].description.toUpperCase();
+            takeDomElement('#humidity').textContent = data.main.humidity;
+            takeDomElement('#pressure').textContent = data.main.pressure;
+            takeDomElement('#wind').textContent = data.wind.speed;
+            takeDomElement('#weather-discription').textContent = data.weather[0].description.toUpperCase();
             // document.querySelector('#weather-image').src = `https://openweathermap.org/img/wn/${data.weather[0].icon}.png`;
             changingWeatherImage(data);
             changeBackgroungImage(data);
@@ -50,6 +48,7 @@ function fechRequest() {
 function choseCity() {
     let city = takeDomElement('.find-city');
     let cityArray = [];
+
     cityList.forEach(element => {
         if (city.value.toLowerCase() == element.name.toLowerCase()) {
             cityArray.push(element);
@@ -59,13 +58,12 @@ function choseCity() {
     if (cityArray.length > 1) {
         cityListSelect(cityArray);
     } else if (cityArray.length == 0) {
-        takeDomElement('.bubble-alert').classList.remove('hiden');
-        takeDomElement('.find-city').oninput = setTimeout(function () { takeDomElement('.bubble-alert').classList.add('hiden') }, 5000);
+        cityNotFound();
     } else {
         cityId = cityArray[0].id
+        fechRequest(cityId);
     }
 
-    fechRequest();
 
     city.value = '';
 };
@@ -73,18 +71,23 @@ function choseCity() {
 function cityListSelect(cityArray) {
     let citySelectOption = '';
     cityArray.forEach(element => {
-        citySelectOption += `<option value= '${element.id}'>${element.name} ${element.state} ${element.country} </option>`
+        citySelectOption += `<li onclick = clickedItemInCityList('${element.id}')>${element.name} ${element.state} ${element.country} </li>`
     })
     takeDomElement('input.find-city').classList.add('hiden')
-    takeDomElement('select.select-city').classList.remove('hiden');
-    takeDomElement('select.select-city').innerHTML = `<option disabled selected>Please, select the exact location from the list:</option>${citySelectOption}`;
-    takeDomElement('select.select-city').onchange = function () {
-        cityId = takeDomElement('select.select-city').options[this.selectedIndex].value;
-        fechRequest();
-        takeDomElement('select.select-city').classList.add('hiden')
-        takeDomElement('input.find-city').classList.remove('hiden')
-    }
-}
+    takeDomElement('.select-city-wraper').classList.remove('hiden');
+    takeDomElement('.select-city').innerHTML = `${citySelectOption}`;
+};
+
+function clickedItemInCityList(cityId) {
+    fechRequest(cityId);
+    takeDomElement('.select-city-wraper').classList.add('hiden')
+    takeDomElement('input.find-city').classList.remove('hiden')
+};
+
+function cityNotFound() {
+    takeDomElement('.bubble-alert').classList.remove('hiden');
+    takeDomElement('.find-city').oninput = setTimeout(function () { takeDomElement('.bubble-alert').classList.add('hiden') }, 5000);
+};
 
 function changingWeatherImage(data) {
     let id = data.weather[0].id;
@@ -108,7 +111,7 @@ function changingWeatherImage(data) {
         takeDomElement('.weather-image').classList.add('fa-umbrella');
     }
 
-}
+};
 
 function changeBackgroungImage(data) {
     let icon = data.weather[0].icon;
@@ -119,10 +122,11 @@ function changeBackgroungImage(data) {
         takeDomElement('.main-bg').style.backgroundImage = 'url(/images/day.png)';
 
     }
-}
+};
 
 takeDomElement('.find-city-btn').addEventListener('click', choseCity);
 takeDomElement('.find-city').addEventListener("keypress", event => { if (event.keyCode == 13) { choseCity() } });
 
-document.onload = fechRequest();
+document.onload = fechRequest('703448');
+let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 takeDomElement('#date').innerHTML = new Date().toLocaleDateString('en-US', options);

@@ -38,11 +38,11 @@ input, button,select {
 }
 
 .hiden{
-    display: none;
+    display: none!important;
 }
 
 .visible{
-    display: inline-block ;
+    display: inline-block !important;
 }
 .clear{
     clear: both;
@@ -53,7 +53,7 @@ input, button,select {
 
 .main-bg{
     background-image: url(/images/night.png);
-    background-size: cover;
+    background-size: inherit;
 }
 
 .town-card{
@@ -67,33 +67,26 @@ input, button,select {
 
 .search-block{
     text-align: right;
-    font-size: 1.5rem;
-    padding: 2% ;
+    font-size: 16px;
+    padding: 0.2rem ;
 }
 
-.find-city, .find-city-btn{
+.find-city, .find-city-btn, .select-city-wraper {
     padding: 10px;
-    line-height: 1.2px;
     background: #fff;
     border-radius: 5px;
     border: 1px solid #bdbdbd;
+    display: inline-block;
+    vertical-align: top;
 }
 .find-city{
     width: 50%;
 }
-option {
-font-size: 16px;
-}
-
-.find-city:focus,.find-city:active,.find-city-btn:focus,.find-city-btn:active {
-    border: 1px solid #bdbdbd;
+.select-city-wraper{
+    width: 50%;
     color: #000;
-    background-color: #fff;
-}
-
-.find-city-btn:focus,.find-city-btn:active,.find-city-btn:hover {
-    background-color: #2670af54;
-    color: #fff;
+    text-shadow: none;
+    text-align: left;
 }
 
 .bubble-alert{
@@ -115,32 +108,65 @@ font-size: 16px;
     top: 7px;
     display: inline-block;
 }
+ul.select-city{
+    list-style: none;
+}
+ul.select-city li{
+    width: 100%;
+    padding: 0.4rem;
+}
+.select-city li:hover, .select-city li:focus,.select-city li:active{
+    background-color: #5090c1;
+    cursor: pointer;
+}
+.disabled{
+    color: #676767;
+}
+.find-city:focus,.find-city:active,.find-city-btn:focus,.find-city-btn:active {
+    border: 1px solid #bdbdbd;
+    color: #000;
+    background-color: #fff;
+}
+
+.find-city-btn:focus,.find-city-btn:active,.find-city-btn:hover {
+    background-color: #2670af54;
+    color: #fff;
+    cursor: pointer;
+}
+
 .weather-img-block{
     float: left;
     text-align: center;
     width: 30%;
 }
+
 .weather-img-block img{
     width: 50%;
 }
+
 .weather-img-block .fas{
     font-size: 8rem;
     padding: 10px;
 }
+
 .weather-img-block .fa-sun{
     color: yellow;
 }
+
 #town-state-country{
 text-shadow: #000 2px 2px 3px;
 }
+
 .town-temperature-wrap{
     float: left;
     text-align: center;
     width: 38%;
+    color: #f8ee51;
 }
 .temperature-active{
     font-size: 6rem;
 }
+
 .weather-details{
     float: left;
     width: 32%;
@@ -163,4 +189,15 @@ text-shadow: #000 2px 2px 3px;
     border-radius: 5px;
     padding: 1%;
     box-shadow: #000 3px 3px 10px;
+}
+
+@media (max-width: 768px) { 
+    .weather-img-block, .town-temperature-wrap,.weather-details{
+        width: 100%;
+        text-align: center;
+    }
+.find-city, .select-city-wraper,.bubble-alert, .find-city-btn{
+    width: 100%;
+    display: block;
+}
 }
