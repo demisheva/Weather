@@ -110,6 +110,8 @@ input, button,select {
 }
 ul.select-city{
     list-style: none;
+    max-height: 9rem;
+    overflow: auto;
 }
 ul.select-city li{
     width: 100%;

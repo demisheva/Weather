@@ -1,4 +1,15 @@
 
+// take all cities list from json !!!working with Server
+let cityList;
+var request = new XMLHttpRequest();
+request.open('GET', 'city.list.json');
+request.responseType = 'json';
+request.send();
+request.onload = function () {
+    cityList = request.response;
+    return cityList
+}
+
 function takeDomElement(domElement) {
     return document.querySelector(domElement);
 }
@@ -7,8 +18,7 @@ function fetchRequest(cityId) {
     fetch(`http://api.openweathermap.org/data/2.5/weather?id=${cityId}&appid=811b26bdde41b08213dc84b03e747002`)
         .then(function (resp) { return resp.json() })
         .then(function (data) {
-
-            console.log(data)
+            // console.log(data)
             takeDomElement('#town-state-country').textContent = `${data.name} ${data.sys.country}`;
             takeDomElement('#temperature-active').innerHTML = Math.round(data.main.temp - 273) + '&deg;';
             takeDomElement('#temperature-feels').innerHTML = Math.round(data.main.feels_like - 273) + '&deg;';
@@ -19,6 +29,7 @@ function fetchRequest(cityId) {
             takeDomElement('#pressure').textContent = data.main.pressure;
             takeDomElement('#wind').textContent = data.wind.speed;
             takeDomElement('#weather-discription').textContent = data.weather[0].description.toUpperCase();
+
             changingWeatherImage(data);
             changeBackgroungImage(data);
 
@@ -27,46 +38,33 @@ function fetchRequest(cityId) {
             // catch any errors
             console.log('error')
         });
-
-
 }
 
-function cityNameInInput() {
+function chooseCity() {
     let city = takeDomElement('.find-city');
-    let cityName = city.value;
-    if (city.value.length < 3) {
-        takeDomElement('.not-enough-letters').classList.remove('hiden');
-        takeDomElement('.find-city').oninput = setTimeout(function () { takeDomElement('.not-enough-letters').classList.add('hiden') }, 5000);
+    let cityArray = [];
+
+    cityList.forEach(element => {
+        if (city.value.toLowerCase() == element.name.toLowerCase()) {
+            cityArray.push(element);
+        }
+    });
+
+    if (cityArray.length > 1) {
+        cityList(cityArray);
+    } else if (cityArray.length == 0) {
+        cityNotFound();
     } else {
-        fetchRequestToGetCityList(cityName);
+        cityId = cityArray[0].id
+        fetchRequest(cityId);
     }
 
     city.value = '';
 }
 
-function fetchRequestToGetCityList(cityName) {
-    fetch(`https://citiesfinder.herokuapp.com/${cityName}`)
-        .then(response => response.json())
-        .then(function (data) {
-            console.log(data.length)
-            if (data.length > 1) {
-                cityList(data);
-            } else if (data.length == 0) {
-                cityNotFound();
-            } else {
-                cityId = data[0].id
-                fetchRequest(cityId);
-            }
-        })
-        .catch(function () {
-            // catch any errors
-            console.log('error')
-        });
-}
-
-function cityList(data) {
+function cityList(cityArray) {
     let citySelectOption = '';
-    data.forEach(element => {
+    cityArray.forEach(element => {
         citySelectOption += `<li onclick = clickedItemInCityList('${element.id}')>${element.name} ${element.state} ${element.country} </li>`
     })
     takeDomElement('input.find-city').classList.add('hiden')
@@ -81,8 +79,8 @@ function clickedItemInCityList(cityId) {
 }
 
 function cityNotFound() {
-    takeDomElement('no-location').classList.remove('hiden');
-    takeDomElement('.find-city').oninput = setTimeout(function () { takeDomElement('no-location').classList.add('hiden') }, 5000);
+    takeDomElement('.bubble-alert').classList.remove('hiden');
+    takeDomElement('.find-city').oninput = setTimeout(function () { takeDomElement('.bubble-alert').classList.add('hiden') }, 5000);
 }
 
 function changingWeatherImage(data) {
@@ -121,9 +119,10 @@ function changeBackgroungImage(data) {
     }
 }
 
-takeDomElement('.find-city-btn').addEventListener('click', cityNameInInput);
-takeDomElement('.find-city').addEventListener("keypress", event => { if (event.keyCode == 13) { cityNameInInput() } });
+takeDomElement('.find-city-btn').addEventListener('click', chooseCity);
+takeDomElement('.find-city').addEventListener("keypress", event => { if (event.keyCode == 13) { chooseCity() } });
 
 document.onload = fetchRequest('703448');
+
 let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 takeDomElement('#date').innerHTML = new Date().toLocaleDateString('en-US', options);

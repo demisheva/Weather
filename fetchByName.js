@@ -3,8 +3,8 @@ function takeDomElement(domElement) {
     return document.querySelector(domElement);
 }
 
-function fetchRequest(cityId) {
-    fetch(`http://api.openweathermap.org/data/2.5/weather?id=${cityId}&appid=811b26bdde41b08213dc84b03e747002`)
+function fetchRequest(cityName) {
+    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=811b26bdde41b08213dc84b03e747002`)
         .then(function (resp) { return resp.json() })
         .then(function (data) {
 
@@ -26,63 +26,18 @@ function fetchRequest(cityId) {
         .catch(function () {
             // catch any errors
             console.log('error')
-        });
-
-
-}
-
-function cityNameInInput() {
-    let city = takeDomElement('.find-city');
-    let cityName = city.value;
-    if (city.value.length < 3) {
-        takeDomElement('.not-enough-letters').classList.remove('hiden');
-        takeDomElement('.find-city').oninput = setTimeout(function () { takeDomElement('.not-enough-letters').classList.add('hiden') }, 5000);
-    } else {
-        fetchRequestToGetCityList(cityName);
-    }
-
-    city.value = '';
-}
-
-function fetchRequestToGetCityList(cityName) {
-    fetch(`https://citiesfinder.herokuapp.com/${cityName}`)
-        .then(response => response.json())
-        .then(function (data) {
-            console.log(data.length)
-            if (data.length > 1) {
-                cityList(data);
-            } else if (data.length == 0) {
-                cityNotFound();
-            } else {
-                cityId = data[0].id
-                fetchRequest(cityId);
-            }
-        })
-        .catch(function () {
-            // catch any errors
-            console.log('error')
+            cityNotFound();
         });
 }
-
-function cityList(data) {
-    let citySelectOption = '';
-    data.forEach(element => {
-        citySelectOption += `<li onclick = clickedItemInCityList('${element.id}')>${element.name} ${element.state} ${element.country} </li>`
-    })
-    takeDomElement('input.find-city').classList.add('hiden')
-    takeDomElement('.select-city-wraper').classList.remove('hiden');
-    takeDomElement('.select-city').innerHTML = `${citySelectOption}`;
-}
-
-function clickedItemInCityList(cityId) {
-    fetchRequest(cityId);
-    takeDomElement('.select-city-wraper').classList.add('hiden')
-    takeDomElement('input.find-city').classList.remove('hiden')
+function findCity() {
+    let city = takeDomElement('.find-city')
+    fetchRequest(city.value.toLowerCase());
+    city.value = ' '
 }
 
 function cityNotFound() {
-    takeDomElement('no-location').classList.remove('hiden');
-    takeDomElement('.find-city').oninput = setTimeout(function () { takeDomElement('no-location').classList.add('hiden') }, 5000);
+    takeDomElement('.bubble-alert').classList.remove('hiden');
+    takeDomElement('.find-city').oninput = setTimeout(function () { takeDomElement('.bubble-alert').classList.add('hiden') }, 5000);
 }
 
 function changingWeatherImage(data) {
@@ -121,9 +76,10 @@ function changeBackgroungImage(data) {
     }
 }
 
-takeDomElement('.find-city-btn').addEventListener('click', cityNameInInput);
-takeDomElement('.find-city').addEventListener("keypress", event => { if (event.keyCode == 13) { cityNameInInput() } });
+takeDomElement('.find-city-btn').addEventListener('click', findCity);
+takeDomElement('.find-city').addEventListener("keypress", event => { if (event.keyCode == 13) { findCity() } });
 
-document.onload = fetchRequest('703448');
+document.onload = fetchRequest('Kyiv');
+
 let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 takeDomElement('#date').innerHTML = new Date().toLocaleDateString('en-US', options);
