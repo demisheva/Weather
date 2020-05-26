@@ -27,18 +27,27 @@ function fetchRequest(cityId) {
             // catch any errors
             console.log('error')
         });
-
-
 }
 
 function cityNameInInput() {
     let city = takeDomElement('.find-city');
-    let cityName = city.value;
+    let cityName = city.value.toLowerCase();
+
+    for (const iterator of cityName) {
+        if (iterator.match(/[a-z]/) == null) {
+            console.log('no-latin')
+            takeDomElement('.wrong-letters').classList.remove('hiden');
+            takeDomElement('.find-city').oninput = setTimeout(function () { takeDomElement('.wrong-letters').classList.add('hiden') }, 5000);
+        }
+        break;
+    }
+
     if (city.value.length < 3) {
         takeDomElement('.not-enough-letters').classList.remove('hiden');
         takeDomElement('.find-city').oninput = setTimeout(function () { takeDomElement('.not-enough-letters').classList.add('hiden') }, 5000);
     } else {
         fetchRequestToGetCityList(cityName);
+        console.log(cityName);
     }
 
     city.value = '';
@@ -49,6 +58,7 @@ function fetchRequestToGetCityList(cityName) {
         .then(response => response.json())
         .then(function (data) {
             console.log(data.length)
+            console.log(data)
             if (data.length > 1) {
                 cityList(data);
             } else if (data.length == 0) {
@@ -81,8 +91,8 @@ function clickedItemInCityList(cityId) {
 }
 
 function cityNotFound() {
-    takeDomElement('no-location').classList.remove('hiden');
-    takeDomElement('.find-city').oninput = setTimeout(function () { takeDomElement('no-location').classList.add('hiden') }, 5000);
+    takeDomElement('.no-location').classList.remove('hiden');
+    takeDomElement('.find-city').oninput = setTimeout(function () { takeDomElement('.no-location').classList.add('hiden') }, 5000);
 }
 
 function changingWeatherImage(data) {
