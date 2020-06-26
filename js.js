@@ -4,7 +4,7 @@ function takeDomElement(domElement) {
 }
 
 function fetchRequest(cityId) {
-    fetch(`http://api.openweathermap.org/data/2.5/weather?id=${cityId}&appid=811b26bdde41b08213dc84b03e747002`)
+    fetch(`https://api.openweathermap.org/data/2.5/weather?id=${cityId}&appid=811b26bdde41b08213dc84b03e747002`)
         .then(function (resp) { return resp.json() })
         .then(function (data) {
 
