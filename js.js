@@ -137,3 +137,4 @@ takeDomElement('.find-city').addEventListener("keypress", event => { if (event.k
 document.onload = fetchRequest('703448');
 let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 takeDomElement('#date').innerHTML = new Date().toLocaleDateString('en-US', options);
+console.log(cityId)
