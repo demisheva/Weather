@@ -1,5 +1,5 @@
 # Weather 
-<p>GitHub Pages <a href="demisheva.github.io/Weather/">demisheva.github.io/Weather/</a></p>
+<p>GitHub Pages <a href="https://demisheva.github.io/Weather/">demisheva.github.io/Weather/</a></p>
 <h1> Weather application using openweathermap</h1>
 <p>The task is to write an application to get the current state of the weather. Use openweathermap.</p>
 
