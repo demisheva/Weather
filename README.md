@@ -1,5 +1,6 @@
 # Weather 
-<h1> Weather applicationusing openweathermap</h1>
+<p>GitHub Pages <a href="">Weather</a></p>
+<h1> Weather application using openweathermap</h1>
 <p>The task is to write an application to get the current state of the weather. Use openweathermap.</p>
 
 <h2>Limitations and clarifications</h2>
